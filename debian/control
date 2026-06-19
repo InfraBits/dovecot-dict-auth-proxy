@@ -1,0 +1,12 @@
+Source: dovecot-auth-proxy
+Section: utils
+Priority: optional
+Maintainer: Infrabits <info@infrabits.nl>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: dovecot-auth-proxy
+Architecture: amd64
+Depends: ${misc:Depends}
+Description: Git credential helper

@@ -1,0 +1,28 @@
+[package]
+name = "dovecot-auth-proxy"
+version = "0.1.0"
+edition = "2021"
+description = "Dovecot dict authentication service backed by per-user password files"
+license = "MIT"
+publish = false
+authors = ["Infrabits"]
+
+[package.metadata.deb]
+name = "dovecot-auth-proxy"
+maintainer = "Infrabits"
+copyright = "Infrabits"
+assets = [
+  ["target/release/dovecot-auth-proxy", "usr/sbin/dovecot-auth-proxy", "755"],
+]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+nix = { version = "0.29", features = ["fs", "process", "user"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+strip = true

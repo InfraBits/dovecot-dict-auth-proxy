@@ -81,7 +81,8 @@ fn dispatch(line: &str, config: &Config) -> Option<String> {
         return None;
     }
 
-    if let Some(email) = line.strip_prefix("Lshared/passdb/") {
+    if let Some(rest) = line.strip_prefix("Lshared/passdb/") {
+        let email = rest.split('\t').next().unwrap_or(rest);
         eprintln!("passdb lookup: {email}");
         return Some(match mailbox_lookup(email, config) {
             None => "N\n".to_string(),
@@ -92,7 +93,8 @@ fn dispatch(line: &str, config: &Config) -> Option<String> {
         });
     }
 
-    if let Some(email) = line.strip_prefix("Lshared/userdb/") {
+    if let Some(rest) = line.strip_prefix("Lshared/userdb/") {
+        let email = rest.split('\t').next().unwrap_or(rest);
         eprintln!("userdb lookup: {email}");
         return Some(match mailbox_lookup(email, config) {
             None => "N\n".to_string(),
